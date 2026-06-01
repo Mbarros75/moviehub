@@ -2,6 +2,4 @@ Projeto criado para a disciplina de POO
 
 Equipe
 
-matricula Nome
-matricula 2 Nome 2
-matrícula 3 Nome 3
+matricula 2024023334 Nome Michael de Vasconcelos barros
