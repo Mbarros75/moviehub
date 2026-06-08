@@ -1,17 +1,28 @@
 package br.com.cdl.moviehub.modelos;
+
 public class Filme extends Titulo {
-    private String diretor;
 
-    public String getDiretor() {
-        return diretor;
-    }
+    // atributo exclusivo de Filme
+    private int totalEmMinutos;
 
-    public void setDiretor(String diretor) {
-        this.diretor = diretor;
+    @Override
+    public void exibeFichaTecnica() {
+        super.exibeFichaTecnica(); // aproveita o que já está em Titulo
+        System.out.println("Duração em minutos: " + totalEmMinutos);
+        System.out.println("Média de avaliações: " + pegaMedia());
     }
 
     @Override
-    public int getDuracaoEmMinutos() {
-        return getTotalEmMinutos();
+    public int getTotalEmMinutos() {
+        return totalEmMinutos;
+    }
+
+    public void setTotalEmMinutos(int totalEmMinutos) {
+        // duração mínima de um filme: 1 minuto
+        if (totalEmMinutos > 0) {
+            this.totalEmMinutos = totalEmMinutos;
+        } else {
+            System.out.println("Duração do filme inválida!");
+        }
     }
 }

@@ -1,31 +1,41 @@
 package br.com.cdl.moviehub.modelos;
+
 public class Titulo {
-     //declarando os atributos da classe
+
+    // atributos comuns a Filme e Serie
     private String nome;
-    private int anoDeLancamento, totalEmMinutos, totalDeAvaliacoes;
-    private double somaDasAvaliacoes,nota, pegaMedia;
+    private int anoDeLancamento;
+    private int totalDeAvaliacoes;
+    private double somaDasAvaliacoes;
     private boolean incluidoNoPlano;
 
-    //criando as ações da classe
+    // ações comuns
 
-    public void exibeFichaTecnica(){
-        System.out.println("Nome do filme: " + nome);
+    public void exibeFichaTecnica() {
+        System.out.println("Nome: " + nome);
         System.out.println("Ano de lançamento: " + anoDeLancamento);
-        System.out.println("Duração em minutos: " + totalEmMinutos);
     }
 
-    public void avalia(double nota){
-
-        somaDasAvaliacoes += nota;
-        totalDeAvaliacoes++;
-
+    public void avalia(double nota) {
+        if (nota >= 0 && nota <= 10) {
+            somaDasAvaliacoes += nota;
+            totalDeAvaliacoes++;
+        } else {
+            System.out.println("Nota inválida! Informe um valor entre 0 e 10.");
+        }
     }
 
-    public double pegaMedia(){
-
+    public double pegaMedia() {
+        if (totalDeAvaliacoes == 0) return 0;
         return somaDasAvaliacoes / totalDeAvaliacoes;
-
     }
+
+    // método que cada subclasse implementa do seu jeito
+    public int getTotalEmMinutos() {
+        return 0;
+    }
+
+    // getters e setters
 
     public String getNome() {
         return nome;
@@ -40,59 +50,20 @@ public class Titulo {
     }
 
     public void setAnoDeLancamento(int anoDeLancamento) {
-        //ano de invencao do cinema: 1888
-        if (anoDeLancamento>1888) {
+        // ano de invenção do cinema: 1888
+        if (anoDeLancamento > 1888) {
             this.anoDeLancamento = anoDeLancamento;
         } else {
             System.out.println("Ano de lançamento inválido!");
         }
-        
     }
-
-    public int getTotalEmMinutos() {
-        return totalEmMinutos;
-    }
-
-    public void setTotalEmMinutos(int totalEmMinutos) {
-        //duração mínima de um filme: 1 minuto
-        if (totalEmMinutos>0) {
-            this.totalEmMinutos = totalEmMinutos;
-         } else {
-            System.out.println("Duração do filme inválida!");
-        
-    }
-}
 
     public int getTotalDeAvaliacoes() {
         return totalDeAvaliacoes;
     }
 
-    public void setTotalDeAvaliacoes(int totalDeAvaliacoes) {
-        this.totalDeAvaliacoes = totalDeAvaliacoes;
-    }
-
     public double getSomaDasAvaliacoes() {
         return somaDasAvaliacoes;
-    }
-
-    public void setSomaDasAvaliacoes(double somaDasAvaliacoes) {
-        this.somaDasAvaliacoes = somaDasAvaliacoes;
-    }
-
-    public double getNota() {
-        return nota;
-    }
-
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
-
-    public double getPegaMedia() {
-        return pegaMedia;
-    }
-
-    public void setPegaMedia(double pegaMedia) {
-        this.pegaMedia = pegaMedia;
     }
 
     public boolean isIncluidoNoPlano() {
@@ -101,9 +72,5 @@ public class Titulo {
 
     public void setIncluidoNoPlano(boolean incluidoNoPlano) {
         this.incluidoNoPlano = incluidoNoPlano;
-    }
-
-    public int getDuracaoEmMinutos() {
-        return totalEmMinutos;
     }
 }
